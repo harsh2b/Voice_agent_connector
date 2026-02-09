@@ -59,6 +59,52 @@ namespace VoiceAgent.Editor
             }
         }
 
+        [MenuItem("Tools/Voice Agent/Setup Event Tracker")]
+        public static void SetupEventTracker()
+        {
+            // Check if GameEventTracker already exists
+            GameEventTracker existingTracker = FindObjectOfType<GameEventTracker>();
+
+            if (existingTracker != null)
+            {
+                Selection.activeGameObject = existingTracker.gameObject;
+                EditorGUIUtility.PingObject(existingTracker.gameObject);
+                
+                Debug.Log($"[Voice Agent] Event Tracker already exists on '{existingTracker.gameObject.name}'. Selected for editing.");
+                
+                EditorUtility.DisplayDialog(
+                    "Voice Agent Event Tracker", 
+                    $"Event Tracker is already set up on GameObject '{existingTracker.gameObject.name}'.\n\nThe object has been selected in the hierarchy.", 
+                    "OK"
+                );
+            }
+            else
+            {
+                // Create new GameObject with GameEventTracker component
+                GameObject trackerObject = new GameObject("GameEventTracker");
+                GameEventTracker tracker = trackerObject.AddComponent<GameEventTracker>();
+                
+                Selection.activeGameObject = trackerObject;
+                EditorGUIUtility.PingObject(trackerObject);
+                
+                UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(
+                    UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene()
+                );
+                
+                Debug.Log($"[Voice Agent] ✓ Event Tracker setup complete! GameObject 'GameEventTracker' created and selected.");
+                
+                EditorUtility.DisplayDialog(
+                    "Voice Agent Event Tracker Setup Complete", 
+                    $"Game Event Tracker has been successfully set up!\n\n" +
+                    $"• GameObject 'GameEventTracker' created\n" +
+                    $"• Auto-tracking enabled for scenes and lifecycle\n" +
+                    $"• Use GameEventTracker.Instance.TrackXXX() in your code\n\n" +
+                    $"Check the documentation for available tracking methods.", 
+                    "OK"
+                );
+            }
+        }
+
         [MenuItem("Tools/Voice Agent/About")]
         public static void ShowAbout()
         {

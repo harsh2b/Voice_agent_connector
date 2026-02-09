@@ -11,10 +11,12 @@ A **zero-friction WebSocket bridge** for connecting Unity games to Voice Agents.
 
 - 🔌 **Plug & Play**: One-line setup via Unity Editor menu
 - 🚀 **Zero Friction**: Send any game event with `SendGameEvent(myEvent)`
+- 🎯 **Pre-built Event Tracker**: 12+ common game events ready to use (levels, scores, emotions, etc.)
 - 🔄 **Auto-Serialization**: Automatically wraps events in `{ "type": "ClassName", "payload": {...} }` format
 - 🌐 **Cross-Platform**: Built-in WebSocket support for Standalone, Mobile platforms
 - 🎯 **Singleton Pattern**: Access from anywhere via `VoiceAgentBridge.Instance`
 - 🐛 **Debug Mode**: Built-in logging for development
+- 📊 **Auto-Tracking**: Automatically track scene changes and app lifecycle
 
 ---
 
@@ -53,6 +55,20 @@ This package includes a built-in WebSocket client (`SimpleWebSocket`) using .NET
 - Create an empty GameObject
 - Add the `VoiceAgentBridge` component
 - Configure the `Agent URL` (default: `ws://localhost:8080`)
+
+### 1b. Setup Event Tracker (Optional but Recommended)
+
+**Quick Setup:**
+- Go to `Tools > Voice Agent > Setup Event Tracker`
+- This creates a `GameEventTracker` GameObject with auto-tracking enabled
+
+**What you get:**
+- ✅ Pre-built methods for common game events (levels, scores, emotions, etc.)
+- ✅ Automatic scene change tracking
+- ✅ Automatic app lifecycle tracking
+- ✅ Zero boilerplate code
+
+See [GAME_EVENT_TRACKER_GUIDE.md](GAME_EVENT_TRACKER_GUIDE.md) for full documentation.
 
 ### 2. Send Your First Event
 
@@ -100,6 +116,40 @@ The bridge automatically wraps your event:
     "playerName": "Alice"
   }
 }
+```
+
+---
+
+## 🎯 Using GameEventTracker (Easier Way)
+
+Instead of creating event classes manually, use the pre-built **GameEventTracker**:
+
+```csharp
+using VoiceAgent;
+
+public class GameManager : MonoBehaviour
+{
+    void Start()
+    {
+        // Track level start - one line!
+        GameEventTracker.Instance.TrackLevelStart("Tutorial", 1);
+    }
+
+    void OnPlayerJump()
+    {
+        // Track player action - one line!
+        GameEventTracker.Instance.TrackPlayerAction("jump", transform.position);
+    }
+
+    void OnLevelComplete()
+    {
+        // Track level complete - one line!
+        GameEventTracker.Instance.TrackLevelComplete("Tutorial", 45.5f, 1000, true);
+    }
+}
+```
+
+**See [GAME_EVENT_TRACKER_GUIDE.md](GAME_EVENT_TRACKER_GUIDE.md) for 12+ pre-built event types!**
 ```
 
 ---
