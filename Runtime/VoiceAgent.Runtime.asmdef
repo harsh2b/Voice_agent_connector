@@ -1,9 +1,7 @@
 {
     "name": "VoiceAgent.Runtime",
     "rootNamespace": "VoiceAgent",
-    "references": [
-        "NativeWebSocket"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

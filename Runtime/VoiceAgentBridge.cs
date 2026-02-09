@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Net.WebSockets;
 using UnityEngine;
-using NativeWebSocket;
 
 namespace VoiceAgent
 {
@@ -45,7 +45,7 @@ namespace VoiceAgent
         #endregion
 
         #region Private Fields
-        private WebSocket _websocket;
+        private SimpleWebSocket _websocket;
         private bool _isConnected = false;
         #endregion
 
@@ -107,7 +107,7 @@ namespace VoiceAgent
 
             try
             {
-                _websocket = new WebSocket(agentUrl);
+                _websocket = new SimpleWebSocket();
 
                 _websocket.OnOpen += OnOpen;
                 _websocket.OnMessage += OnMessage;
@@ -115,7 +115,7 @@ namespace VoiceAgent
                 _websocket.OnClose += OnClose;
 
                 Log($"Connecting to Voice Agent at {agentUrl}...");
-                await _websocket.Connect();
+                await _websocket.Connect(agentUrl);
             }
             catch (Exception e)
             {
@@ -225,10 +225,10 @@ namespace VoiceAgent
             OnErrorOccurred?.Invoke(errorMsg);
         }
 
-        private void OnClose(WebSocketCloseCode closeCode)
+        private void OnClose(WebSocketCloseStatus closeStatus)
         {
             _isConnected = false;
-            Log($"Connection closed: {closeCode}");
+            Log($"Connection closed: {closeStatus}");
             OnDisconnected?.Invoke();
         }
         #endregion
