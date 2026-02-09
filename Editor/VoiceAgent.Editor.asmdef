@@ -1,0 +1,18 @@
+{
+    "name": "VoiceAgent.Editor",
+    "rootNamespace": "VoiceAgent.Editor",
+    "references": [
+        "VoiceAgent.Runtime"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
