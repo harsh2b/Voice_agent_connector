@@ -1,13 +1,10 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-#if NATIVEWEBSOCKET_INSTALLED
 using NativeWebSocket;
-#endif
 
 namespace VoiceAgent
 {
-#if NATIVEWEBSOCKET_INSTALLED
     /// <summary>
     /// Singleton MonoBehaviour that manages WebSocket connection to Voice Agent
     /// </summary>
@@ -258,17 +255,4 @@ namespace VoiceAgent
         public bool IsConnected => _isConnected;
         #endregion
     }
-#else
-    /// <summary>
-    /// Placeholder class when NativeWebSocket is not installed
-    /// </summary>
-    public class VoiceAgentBridge : MonoBehaviour
-    {
-        private void Awake()
-        {
-            Debug.LogWarning("[Voice Agent Bridge] NativeWebSocket dependency is being installed. Please wait for compilation to complete.");
-        }
-    }
-#endif
 }
-

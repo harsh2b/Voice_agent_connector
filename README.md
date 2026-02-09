@@ -20,30 +20,30 @@ A **zero-friction WebSocket bridge** for connecting Unity games to Voice Agents.
 
 ## 📦 Installation
 
-### Quick Install (Recommended)
+### ⚠️ Important: 2-Step Installation Required
+
+Unity Package Manager requires dependencies to be installed **before** the main package. Follow these steps in order:
+
+### Step 1: Install NativeWebSocket (Required)
 
 1. Open Unity Package Manager (`Window > Package Manager`)
-2. Click the **`+`** button in the top-left corner
-3. Select **"Add package from git URL..."**
-4. Paste: `https://github.com/harsh2b/Voice_agent_connector.git`
-5. Click **Add**
+2. Click the **`+`** button → **"Add package from git URL..."**
+3. Paste: **`https://github.com/endel/NativeWebSocket.git#upm`**
+4. Click **Add** and wait for installation to complete
 
-**That's it!** The package will automatically detect and install NativeWebSocket if it's not already present.
+### Step 2: Install Voice Agent Bridge
 
-### Manual Installation (Alternative)
+1. In Package Manager, click **`+`** → **"Add package from git URL..."** again
+2. Paste: **`https://github.com/harsh2b/Voice_agent_connector.git`**
+3. Click **Add**
 
-1. Download or clone this repository
-2. Copy the entire folder into your project's `Packages/` directory
-3. Unity will automatically detect and import the package
-4. NativeWebSocket will be installed automatically on first import
+**Done!** The package is now ready to use.
 
-### 🔧 Dependencies
+### Alternative: Manual Installation
 
-This package requires **NativeWebSocket** for cross-platform WebSocket support. The dependency is **installed automatically** when you add the package.
-
-If automatic installation fails, you can install it manually:
-- Open Package Manager → `+` → Add package from git URL
-- Paste: `https://github.com/endel/NativeWebSocket.git#upm`
+1. Install NativeWebSocket first (see Step 1 above)
+2. Download/clone this repository
+3. Copy the folder into your project's `Packages/` directory
 
 ---
 
