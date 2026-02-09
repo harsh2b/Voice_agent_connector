@@ -150,7 +150,99 @@ public class GameManager : MonoBehaviour
 ```
 
 **See [GAME_EVENT_TRACKER_GUIDE.md](GAME_EVENT_TRACKER_GUIDE.md) for 12+ pre-built event types!**
+
+---
+
+## 🎨 Creating Custom Events
+
+### Method 1: Separate Events File (Recommended)
+
+Create your own events file in your project to keep them separate from the package:
+
+**Step 1:** Create `Assets/Scripts/MyCustomEvents.cs`:
+
+```csharp
+using System;
+using UnityEngine;
+
+namespace MyGame.Events
+{
+    [Serializable]
+    public class TherapySessionEvent
+    {
+        public string sessionId;
+        public int childAge;
+        public string taskType;
+        public float duration;
+    }
+
+    [Serializable]
+    public class TaskCompletionEvent
+    {
+        public string taskName;
+        public bool success;
+        public int attempts;
+        public float accuracy;
+    }
+}
 ```
+
+**Step 2:** Use them in your game:
+
+```csharp
+using VoiceAgent;
+using MyGame.Events;
+
+public class GameManager : MonoBehaviour
+{
+    void OnTaskComplete()
+    {
+        GameEventTracker.Instance.TrackEvent(new TaskCompletionEvent
+        {
+            taskName = "Color Matching",
+            success = true,
+            attempts = 3,
+            accuracy = 0.85f
+        });
+    }
+}
+```
+
+**✅ Advantages:**
+- Survives package updates
+- Easy to version control
+- Clean project organization
+
+---
+
+### Method 2: Edit Package File Directly
+
+**⚠️ Not Recommended** - Changes will be lost on package updates!
+
+1. In Unity, go to **Packages > Voice Agent Bridge > Runtime > GameEventTracker.cs**
+2. Scroll to the bottom and find the marked section:
+   ```csharp
+   // 👇 ADD YOUR CUSTOM EVENT CLASSES BELOW 👇
+   ```
+3. Add your event classes between the arrows
+
+---
+
+### What Gets Sent
+
+Any custom event you create will be automatically wrapped in this format:
+
+```json
+{
+  "type": "YourEventClassName",
+  "payload": {
+    "field1": "value1",
+    "field2": 123
+  }
+}
+```
+
+The **class name** becomes the event **type** automatically!
 
 ---
 
