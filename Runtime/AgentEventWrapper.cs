@@ -64,44 +64,6 @@ namespace VoiceAgent
         }
     }
 
-    // Example event classes for reference
-    #region Example Events
-    
-    /// <summary>
-    /// Example: Player score event
-    /// Usage: VoiceAgentBridge.Instance.SendGameEvent(new PlayerScoreEvent { score = 100, playerName = "Alice" });
-    /// </summary>
-    [Serializable]
-    public class PlayerScoreEvent
-    {
-        public int score;
-        public string playerName;
-        public float timestamp;
-    }
-
-    /// <summary>
-    /// Example: Level completion event
-    /// Usage: VoiceAgentBridge.Instance.SendGameEvent(new LevelCompleteEvent { levelId = 5, timeTaken = 120.5f });
-    /// </summary>
-    [Serializable]
-    public class LevelCompleteEvent
-    {
-        public int levelId;
-        public float timeTaken;
-        public bool perfectClear;
-    }
-
-    /// <summary>
-    /// Example: Player action event
-    /// Usage: VoiceAgentBridge.Instance.SendGameEvent(new PlayerActionEvent { action = "jump", position = transform.position });
-    /// </summary>
-    [Serializable]
-    public class PlayerActionEvent
-    {
-        public string action;
-        public Vector3 position;
-        public float intensity;
-    }
-
-    #endregion
+    // NOTE: Event classes have been moved to GameEventTracker.cs
+    // Use GameEventTracker.Instance.TrackXXX() methods or create your own custom events
 }
