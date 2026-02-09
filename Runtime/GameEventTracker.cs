@@ -381,4 +381,61 @@ namespace VoiceAgent
     }
 
     #endregion
+
+    #region ⭐ ADD YOUR CUSTOM EVENT CLASSES HERE ⭐
+
+    // ============================================================================
+    // DEVELOPERS: Add your game-specific event classes below this line
+    // ============================================================================
+    // 
+    // Example 1: Secret Phase Event
+    // [Serializable]
+    // public class SecretPhaseEvent
+    // {
+    //     public string phaseName;
+    //     public int secretCode;
+    //     public bool isUnlocked;
+    // }
+    //
+    // Example 2: Boss Encounter Event
+    // [Serializable]
+    // public class BossEncounterEvent
+    // {
+    //     public string bossName;
+    //     public int bossLevel;
+    //     public float playerHealth;
+    // }
+    //
+    // Example 3: Mini-Game Event
+    // [Serializable]
+    // public class MiniGameEvent
+    // {
+    //     public string gameName;
+    //     public string status; // "started", "completed", "failed"
+    //     public int score;
+    // }
+    //
+    // HOW TO USE:
+    // 1. Create your [Serializable] class with public fields
+    // 2. Call: GameEventTracker.Instance.TrackEvent(new YourEventClass { ... });
+    // 3. The class name will automatically become the event type in JSON
+    //
+    // JSON OUTPUT EXAMPLE:
+    // {
+    //   "type": "YourEventClassName",
+    //   "payload": {
+    //     "field1": "value1",
+    //     "field2": 123
+    //   }
+    // }
+    // ============================================================================
+
+    // 👇 ADD YOUR CUSTOM EVENT CLASSES BELOW 👇
+
+
+
+
+    // 👆 ADD YOUR CUSTOM EVENT CLASSES ABOVE 👆
+
+    #endregion
 }
