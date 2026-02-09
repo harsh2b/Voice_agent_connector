@@ -159,15 +159,11 @@ namespace VoiceAgent
                 // Get the class name of the event
                 string eventType = eventData.GetType().Name;
 
-                // Wrap the event in the AgentEventWrapper structure
-                AgentEventWrapper wrapper = new AgentEventWrapper
-                {
-                    type = eventType,
-                    payload = eventData
-                };
+                // Serialize the payload
+                string payloadJson = JsonUtility.ToJson(eventData);
 
-                // Serialize to JSON
-                string json = JsonUtility.ToJson(wrapper);
+                // Manually create the wrapper JSON to avoid double serialization
+                string json = $"{{\"type\":\"{eventType}\",\"payload\":{payloadJson}}}";
 
                 Log($"Sending event: {eventType}\n{json}");
 
