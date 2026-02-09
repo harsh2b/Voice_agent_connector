@@ -12,7 +12,7 @@ A **zero-friction WebSocket bridge** for connecting Unity games to Voice Agents.
 - 🔌 **Plug & Play**: One-line setup via Unity Editor menu
 - 🚀 **Zero Friction**: Send any game event with `SendGameEvent(myEvent)`
 - 🔄 **Auto-Serialization**: Automatically wraps events in `{ "type": "ClassName", "payload": {...} }` format
-- 🌐 **Cross-Platform**: Uses NativeWebSocket for WebGL, Standalone, Mobile support
+- 🌐 **Cross-Platform**: Built-in WebSocket support for Standalone, Mobile platforms
 - 🎯 **Singleton Pattern**: Access from anywhere via `VoiceAgentBridge.Instance`
 - 🐛 **Debug Mode**: Built-in logging for development
 
@@ -260,9 +260,6 @@ wss.on('connection', (ws) => {
 - Check the `Agent URL` is correct
 - Verify firewall settings
 
-### "NativeWebSocket not found"
-- Install the dependency manually: `https://github.com/endel/NativeWebSocket.git#upm`
-
 ### Events not sending
 - Ensure your event class is `[Serializable]`
 - Check `Debug Mode` is enabled to see logs
@@ -284,8 +281,8 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/voice-agent-bridge/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/voice-agent-bridge/discussions)
+- **Issues**: [GitHub Issues](https://github.com/harsh2b/Voice_agent_connector/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/harsh2b/Voice_agent_connector/discussions)
 
 ---
 
