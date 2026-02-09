@@ -1,7 +1,9 @@
 {
     "name": "VoiceAgent.Runtime",
     "rootNamespace": "VoiceAgent",
-    "references": [],
+    "references": [
+        "NativeWebSocket"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
@@ -9,6 +11,12 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": [],
+    "versionDefines": [
+        {
+            "name": "com.endel.nativewebsocket",
+            "expression": "",
+            "define": "NATIVEWEBSOCKET_INSTALLED"
+        }
+    ],
     "noEngineReferences": false
 }
