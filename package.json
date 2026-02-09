@@ -13,8 +13,5 @@
     ],
     "author": {
         "name": "Voice Agent Team"
-    },
-    "dependencies": {
-        "com.endel.nativewebsocket": "https://github.com/endel/NativeWebSocket.git#upm"
     }
 }
