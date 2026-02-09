@@ -243,6 +243,10 @@ namespace VoiceAgent
 
         private void TrackSceneChange(string sceneName)
         {
+            // Only send if connected
+            if (!VoiceAgentBridge.Instance.IsConnected)
+                return;
+
             VoiceAgentBridge.Instance.SendGameEvent(new SceneChangeEvent
             {
                 sceneName = sceneName,
@@ -252,6 +256,10 @@ namespace VoiceAgent
 
         private void TrackAppLifecycle(string state)
         {
+            // Only send if connected
+            if (!VoiceAgentBridge.Instance.IsConnected)
+                return;
+
             VoiceAgentBridge.Instance.SendGameEvent(new AppLifecycleEvent
             {
                 state = state,
