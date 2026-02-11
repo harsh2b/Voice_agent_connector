@@ -88,32 +88,6 @@ namespace VoiceAgent
 
         #region Private Helper Methods
 
-        private void TrackSceneChange(string sceneName)
-        {
-            // Only send if connected
-            if (!VoiceAgentBridge.Instance.IsConnected)
-                return;
-
-            VoiceAgentBridge.Instance.SendGameEvent(new SceneChangeEvent
-            {
-                sceneName = sceneName,
-                timestamp = GetTimestamp()
-            });
-        }
-
-        private void TrackAppLifecycle(string state)
-        {
-            // Only send if connected
-            if (!VoiceAgentBridge.Instance.IsConnected)
-                return;
-
-            VoiceAgentBridge.Instance.SendGameEvent(new AppLifecycleEvent
-            {
-                state = state,
-                timestamp = GetTimestamp()
-            });
-        }
-
         private string GetTimestamp()
         {
             return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
