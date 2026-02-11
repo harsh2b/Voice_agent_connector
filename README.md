@@ -11,12 +11,11 @@ A **zero-friction WebSocket bridge** for connecting Unity games to Voice Agents.
 
 - 🔌 **Plug & Play**: One-line setup via Unity Editor menu
 - 🚀 **Zero Friction**: Send any game event with `SendGameEvent(myEvent)`
-- 🎯 **Pre-built Event Tracker**: 12+ common game events ready to use (levels, scores, emotions, etc.)
+- 🎯 **Minimal Event Tracker**: Simple methods for tracking game phases, errors, and custom events
 - 🔄 **Auto-Serialization**: Automatically wraps events in `{ "type": "ClassName", "payload": {...} }` format
 - 🌐 **Cross-Platform**: Built-in WebSocket support for Standalone, Mobile platforms
 - 🎯 **Singleton Pattern**: Access from anywhere via `VoiceAgentBridge.Instance`
 - 🐛 **Debug Mode**: Built-in logging for development
-- 📊 **Auto-Tracking**: Automatically track scene changes and app lifecycle
 
 ---
 
@@ -60,15 +59,13 @@ This package includes a built-in WebSocket client (`SimpleWebSocket`) using .NET
 
 **Quick Setup:**
 - Go to `Tools > Voice Agent > Setup Event Tracker`
-- This creates a `GameEventTracker` GameObject with auto-tracking enabled
+- This creates a `GameEventTracker` GameObject
 
 **What you get:**
-- ✅ Pre-built methods for common game events (levels, scores, emotions, etc.)
-- ✅ Automatic scene change tracking
-- ✅ Automatic app lifecycle tracking
+- ✅ `TrackEvent()` - Send any custom event
+- ✅ `TrackGamePhase()` - Track game phases (started, completed, etc.)
+- ✅ `TrackError()` - Track errors and issues
 - ✅ Zero boilerplate code
-
-See [GAME_EVENT_TRACKER_GUIDE.md](GAME_EVENT_TRACKER_GUIDE.md) for full documentation.
 
 ### 2. Send Your First Event
 
@@ -122,7 +119,7 @@ The bridge automatically wraps your event:
 
 ## 🎯 Using GameEventTracker (Easier Way)
 
-Instead of creating event classes manually, use the pre-built **GameEventTracker**:
+Use the **GameEventTracker** for common tracking needs:
 
 ```csharp
 using VoiceAgent;
@@ -131,25 +128,32 @@ public class GameManager : MonoBehaviour
 {
     void Start()
     {
-        // Track level start - one line!
-        GameEventTracker.Instance.TrackLevelStart("Tutorial", 1);
+        // Track game phase - one line!
+        GameEventTracker.Instance.TrackGamePhase("ball grab", "started");
     }
 
-    void OnPlayerJump()
+    void OnPhaseComplete()
     {
-        // Track player action - one line!
-        GameEventTracker.Instance.TrackPlayerAction("jump", transform.position);
+        // Track phase completion
+        GameEventTracker.Instance.TrackGamePhase("ball grab", "completed");
     }
 
-    void OnLevelComplete()
+    void OnError()
     {
-        // Track level complete - one line!
-        GameEventTracker.Instance.TrackLevelComplete("Tutorial", 45.5f, 1000, true);
+        // Track errors
+        GameEventTracker.Instance.TrackError("Player fell off map", "gameplay");
+    }
+    
+    void OnCustomEvent()
+    {
+        // Track any custom event
+        GameEventTracker.Instance.TrackEvent(new MyCustomEvent 
+        { 
+            data = "value" 
+        });
     }
 }
 ```
-
-**See [GAME_EVENT_TRACKER_GUIDE.md](GAME_EVENT_TRACKER_GUIDE.md) for 12+ pre-built event types!**
 
 ---
 
